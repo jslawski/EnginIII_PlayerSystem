@@ -40,7 +40,10 @@ public class MoveState : PlayerState
         float finalMoveSpeed = this.moveSpeed * this.controller.moveSpeedModifier * Time.fixedDeltaTime;
         Vector3 targetDestination = this.controller.playerRb.position + (this.moveDirection * finalMoveSpeed);
 
-        this.controller.playerRb.MovePosition(targetDestination);        
+        float targetZRotation = Mathf.Atan2(this.moveDirection.y, this.moveDirection.x) * Mathf.Rad2Deg;
+
+        this.controller.playerRb.MovePosition(targetDestination);
+        this.controller.playerRb.MoveRotation(Quaternion.Euler(new Vector3(0.0f, 0.0f, targetZRotation)));
     }
     
     private bool StoppedHoldingMoveKeys()
