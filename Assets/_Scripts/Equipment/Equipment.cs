@@ -103,7 +103,10 @@ public abstract class Equipment : ScriptableObject
         //Destroy all equipped status effects
         for (int i = 0; i < this.equippedStatusEffects.Count; i++)
         {
-            Destroy(this.equippedStatusEffects[i]);
+            if (this.equippedStatusEffects[i] != null)
+            {
+                Destroy(this.equippedStatusEffects[i]);
+            }
         }
     }
 

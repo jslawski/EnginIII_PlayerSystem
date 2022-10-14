@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SpeedUp : StatusEffect
+public class PermanentSpeedUp : StatusEffect
 {
     private float speedModifier = 5.0f;
 
@@ -12,7 +11,7 @@ public class SpeedUp : StatusEffect
         this.ownerTarget.moveSpeed += this.speedModifier;
     }
 
-    private void OnDestroy()
+    protected override void CleanupStatusEffect()
     {
         this.ownerTarget.moveSpeed -= this.speedModifier;
     }

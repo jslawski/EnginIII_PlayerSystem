@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class StatusEffect : MonoBehaviour
 {
     protected Creature ownerTarget;
     protected Creature nonOwnerTarget;
-    
+
+    public virtual void ApplyStatusEffect() { }
+    protected virtual void CleanupStatusEffect() { }
+
     public void SetupStatusEffect(Creature owner, Creature nonOwner)
     {
         this.ownerTarget = owner;
         this.nonOwnerTarget = nonOwner;
     }
 
-    public virtual void ApplyStatusEffect() { }
+    protected void OnDestroy()
+    {
+        this.CleanupStatusEffect();
+    }
 }

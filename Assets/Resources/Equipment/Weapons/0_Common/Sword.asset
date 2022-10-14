@@ -16,7 +16,7 @@ MonoBehaviour:
   rarity: 2
   equipmentType: 0
   enchantmentSlots:
-  - {fileID: 11400000, guid: de68307701f37c94a8d068f983989267, type: 2}
+  - {fileID: 11400000, guid: bd60a03a4a745bd43b00871c453e79da, type: 2}
   attackPower: 5
   critChance: 0.295
   windUpTime: 0
