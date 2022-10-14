@@ -8,7 +8,5 @@ public enum EnchantmentTrigger { ON_EQUIP, ON_ATTACK, ON_DAMAGE_ENEMY, ON_DAMAGE
 public class Enchantment : ScriptableObject
 {
     public EnchantmentTrigger[] triggers;
-
-    [SerializeField]
-    public StatusEffect enchantmentEffect;
+    public string statusEffectName;
 }

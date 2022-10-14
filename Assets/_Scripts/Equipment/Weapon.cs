@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Equipment/Weapon")]
 public class Weapon : Equipment
 {
-    public Vector2 attackZoneDimensions;
-    public float windUpTime;   
-    public Vector2Int attackChanceRange;
     public int attackPower;
+    [Range(0.0f, 1.0f)]
     public float critChance;
+    public float windUpTime;
+    public Vector2Int toHitRange;
+    public Vector2 attackZoneDimensions;        
 }

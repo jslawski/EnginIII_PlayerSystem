@@ -22,33 +22,75 @@ public class Creature : MonoBehaviour
     public delegate void DamageSelfTrigger(Creature sourceCreature, int damageDealt);
     public DamageSelfTrigger onDamageSelfTriggered;
 
-    public void Equip(Equipment newEquipment)
+    public float moveSpeed = 5f;
+
+    private Weapon unarmedWeapon;    
+    private Armor nakedArmor;
+
+    private void Start()
     {
-        switch (newEquipment.equipmentType)
+        this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
+        this.nakedArmor = Resources.Load<Armor>("Equipment/Armor/Naked");
+
+        if (this.equippedWeapon != null)
         {
-            case EquipmentType.Weapon:
-                break;
-            case EquipmentType.Armor:
-                break;
-            default:
-                Debug.LogError("Invalid EquipmentType: " + newEquipment.equipmentType + " Unable to equip.");
-                break;
+            this.equippedWeapon.Equip(this);
+            this.TriggerEquip();
+        }
+        if (this.equippedArmor != null)
+        {
+            this.equippedArmor.Equip(this);
+            this.TriggerEquip();
         }
     }
 
-    private void DropCurrentWeapon()
+    public void DropWeapon()
     {
-        //Logic to drop it into the world
+        if (this.equippedWeapon == this.unarmedWeapon)
+        {
+            return;
+        }
+
+        GameObject grabbableWeaponPrefab = Resources.Load<GameObject>("Prefabs/GrabbableWeapon");
+        GameObject grabbableWeaponObject = Instantiate(grabbableWeaponPrefab, this.gameObject.transform.position, new Quaternion());
+        grabbableWeaponObject.GetComponent<GrabbableWeapon>().Setup(this.equippedWeapon);
         this.equippedWeapon.Unequip();
 
+        this.equippedWeapon = this.unarmedWeapon;
+        this.equippedWeapon.Equip(this);
     }
 
-    private void EquipWeapon(Weapon newWeapon)
+    public void DropArmor()
     {
-        this.DropCurrentWeapon();
-        this.equippedWeapon = newWeapon;
-        this.equippedWeapon.Equip(this);        
+        if (this.equippedArmor == this.nakedArmor)
+        {
+            return;
+        }
+
+        GameObject grabbableArmorPrefab = Resources.Load<GameObject>("Prefabs/GrabbableArmor");
+        GameObject grabbableArmorObject = Instantiate(grabbableArmorPrefab, this.gameObject.transform.position, new Quaternion());
+        grabbableArmorObject.GetComponent<GrabbableArmor>().Setup(this.equippedArmor);
+        this.equippedArmor.Unequip();
+
+        this.equippedArmor = this.nakedArmor;
+        this.equippedArmor.Equip(this);
     }
+
+    public void Equip(Weapon newWeapon)
+    {
+        this.DropWeapon();
+        this.equippedWeapon = newWeapon;
+        this.equippedWeapon.Equip(this);
+        this.TriggerEquip();
+    }
+
+    private void Equip(Armor newArmor)
+    {
+        this.DropArmor();
+        this.equippedArmor = newArmor;
+        this.equippedArmor.Equip(this);
+        this.TriggerEquip();
+    }    
 
     public void TriggerEquip()
     {

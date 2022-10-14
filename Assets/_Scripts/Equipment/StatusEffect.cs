@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class StatusEffect : MonoBehaviour
 {
-    private Creature ownerTarget;
-    private Creature nonOwnerTarget;
+    protected Creature ownerTarget;
+    protected Creature nonOwnerTarget;
     
     public void SetupStatusEffect(Creature owner, Creature nonOwner)
     {

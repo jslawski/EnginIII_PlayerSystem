@@ -20,11 +20,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
 
     [HideInInspector]
-    public float moveSpeedModifier = 1.0f;
+    public Creature creatureReference;
 
     private void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
+        this.creatureReference = GetComponent<Creature>();
 
         this.ChangeState(new IdleState());
     }
@@ -32,6 +33,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         this.currentState.UpdateState();
+
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            this.creatureReference.DropWeapon();
+        }
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            this.creatureReference.DropArmor();
+        }
     }
 
     private void FixedUpdate()

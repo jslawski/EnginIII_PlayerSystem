@@ -8,16 +8,22 @@ public enum Rarity { Common, Uncommon, Rare, Legendary };
 
 public abstract class Equipment : ScriptableObject
 {
+    [HideInInspector]
     public Creature owner;
 
     public Rarity rarity;
     public EquipmentType equipmentType;
+
     public Enchantment[] enchantmentSlots;
 
     private List<Enchantment> equipEnchantments;
     private List<Enchantment> attackEnchantments;
     private List<Enchantment> damageEnemyEnchantments;
     private List<Enchantment> damageSelfEnchantments;
+
+    private GameObject statusEffectManager;
+
+    private List<StatusEffect> equippedStatusEffects;
 
     private void OrganizeEnchantments()
     {
@@ -94,15 +100,19 @@ public abstract class Equipment : ScriptableObject
             this.owner.onDamageSelfTriggered -= this.TriggerDamageSelfEnchantments;
         }
 
-        StatusEffect[] allCurrentStatusEffects = this.owner.GetComponents<StatusEffect>();
-        for (int i = 0; i < allCurrentStatusEffects.Length; i++)
+        //Destroy all equipped status effects
+        for (int i = 0; i < this.equippedStatusEffects.Count; i++)
         {
-            Destroy(allCurrentStatusEffects[i]);
+            Destroy(this.equippedStatusEffects[i]);
         }
     }
 
     public void Equip(Creature equippingCreature)
     {
+        this.equippedStatusEffects = new List<StatusEffect>();
+
+        this.statusEffectManager = GameObject.Find("StatusEffectManager");
+
         this.OrganizeEnchantments();
 
         this.owner = equippingCreature;
@@ -120,9 +130,13 @@ public abstract class Equipment : ScriptableObject
     {
         for (int i = 0; i < this.equipEnchantments.Count; i++)
         {
-            StatusEffect effect = this.owner.gameObject.AddComponent(Type.GetType(this.equipEnchantments[i].enchantmentEffect.name)) as StatusEffect;
+            StatusEffect effect = this.owner.gameObject.AddComponent(Type.GetType(this.equipEnchantments[i].statusEffectName)) as StatusEffect;
             effect.SetupStatusEffect(this.owner, this.owner);
-            effect.ApplyStatusEffect();            
+            effect.ApplyStatusEffect();
+
+            this.equippedStatusEffects.Add(effect);
+
+            this.owner.onEquipTriggered -= this.TriggerEquipEnchantments;
         }
     }
 
@@ -130,7 +144,7 @@ public abstract class Equipment : ScriptableObject
     {
         for (int i = 0; i < this.attackEnchantments.Count; i++)
         {
-            StatusEffect effect = this.owner.gameObject.AddComponent(Type.GetType(this.attackEnchantments[i].enchantmentEffect.name)) as StatusEffect;
+            StatusEffect effect = this.statusEffectManager.AddComponent(Type.GetType(this.attackEnchantments[i].statusEffectName)) as StatusEffect;            
             effect.SetupStatusEffect(this.owner, this.owner);
             effect.ApplyStatusEffect();
         }
@@ -140,7 +154,7 @@ public abstract class Equipment : ScriptableObject
     {
         for (int i = 0; i < this.damageEnemyEnchantments.Count; i++)
         {
-            StatusEffect effect = this.owner.gameObject.AddComponent(Type.GetType(this.damageEnemyEnchantments[i].enchantmentEffect.name)) as StatusEffect;
+            StatusEffect effect = this.statusEffectManager.AddComponent(Type.GetType(this.damageEnemyEnchantments[i].statusEffectName)) as StatusEffect;
             effect.SetupStatusEffect(this.owner, targetCreature);
             effect.ApplyStatusEffect();
         }
@@ -150,7 +164,7 @@ public abstract class Equipment : ScriptableObject
     {
         for (int i = 0; i < this.damageEnemyEnchantments.Count; i++)
         {
-            StatusEffect effect = this.owner.gameObject.AddComponent(Type.GetType(this.damageEnemyEnchantments[i].enchantmentEffect.name)) as StatusEffect;
+            StatusEffect effect = this.statusEffectManager.AddComponent(Type.GetType(this.damageEnemyEnchantments[i].statusEffectName)) as StatusEffect;
             effect.SetupStatusEffect(this.owner, sourceCreature);
             effect.ApplyStatusEffect();
         }

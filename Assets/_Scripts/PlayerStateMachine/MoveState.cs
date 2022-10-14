@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MoveState : PlayerState
 {
-    private float moveSpeed = 5f;
     Vector3 moveDirection = Vector3.zero;
 
     public override void Enter(PlayerController controller)
@@ -37,7 +36,7 @@ public class MoveState : PlayerState
     {
         base.FixedUpdateState();
 
-        float finalMoveSpeed = this.moveSpeed * this.controller.moveSpeedModifier * Time.fixedDeltaTime;
+        float finalMoveSpeed = this.controller.creatureReference.moveSpeed * Time.fixedDeltaTime;
         Vector3 targetDestination = this.controller.playerRb.position + (this.moveDirection * finalMoveSpeed);
 
         float targetZRotation = Mathf.Atan2(this.moveDirection.y, this.moveDirection.x) * Mathf.Rad2Deg;
