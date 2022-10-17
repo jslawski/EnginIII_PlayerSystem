@@ -21,7 +21,7 @@ public class TimedBurn : TimedStatusEffect
     {
         while (true)
         {
-            this.nonOwnerTarget.currentHitPoints -= this.fireDamage;
+            this.nonOwnerTarget.TakeDamage(this.ownerTarget, this.fireDamage);
             yield return new WaitForSeconds(this.delayBetweenBurnsInSeconds);
         }
     }    

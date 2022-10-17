@@ -11,7 +11,7 @@ public class AttackState : PlayerState
     {
         base.Enter(controller);
 
-        this.controller.creatureReference.attackZone.gameObject.SetActive(true);
+        this.controller.creatureReference.attackZone.EnableAttack();
         this.controller.creatureReference.TriggerAttack();
     }
 
@@ -19,7 +19,7 @@ public class AttackState : PlayerState
     {
         base.Exit();
 
-        this.controller.creatureReference.attackZone.gameObject.SetActive(false);
+        this.controller.creatureReference.attackZone.DisableAttack();
     }
 
     public override void UpdateState()

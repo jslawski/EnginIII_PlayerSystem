@@ -19,6 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bd60a03a4a745bd43b00871c453e79da, type: 2}
   attackPower: 5
   critChance: 0.295
-  windUpTime: 0
-  toHitRange: {x: 5, y: 10}
-  attackZoneDimensions: {x: 2, y: 4}
+  attackZoneDimensions: {x: 1, y: 3}
