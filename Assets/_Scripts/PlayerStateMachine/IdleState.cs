@@ -35,7 +35,7 @@ public class IdleState : PlayerState
 
     private bool PressedMoveKey()
     {
-        return (Input.GetKeyDown(this.controller.upKey) || Input.GetKeyDown(this.controller.downKey) ||
-                Input.GetKeyDown(this.controller.leftKey) || Input.GetKeyDown(this.controller.rightKey));
+        return (Input.GetKey(this.controller.upKey) || Input.GetKey(this.controller.downKey) ||
+                Input.GetKey(this.controller.leftKey) || Input.GetKey(this.controller.rightKey));
     }    
 }

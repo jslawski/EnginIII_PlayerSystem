@@ -10,6 +10,9 @@ public class Creature : MonoBehaviour
     public int totalHitPoints = 100;
     public int currentHitPoints = 100;
 
+    [HideInInspector]
+    public AttackZone attackZone;
+
     public delegate void EquipTrigger();
     public EquipTrigger onEquipTriggered;
 
@@ -26,11 +29,13 @@ public class Creature : MonoBehaviour
 
     private Weapon unarmedWeapon;    
     private Armor nakedArmor;
-
+    
     private void Start()
     {
         this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
         this.nakedArmor = Resources.Load<Armor>("Equipment/Armor/Naked");
+
+        this.attackZone = GetComponentInChildren<AttackZone>(true);
 
         if (this.equippedWeapon != null)
         {
@@ -81,6 +86,11 @@ public class Creature : MonoBehaviour
         this.DropWeapon();
         this.equippedWeapon = newWeapon;
         this.equippedWeapon.Equip(this);
+
+        this.attackZone.transform.localScale = 
+            new Vector3(this.equippedWeapon.attackZoneDimensions.x, 
+            this.equippedWeapon.attackZoneDimensions.y, 1.0f);
+
         this.TriggerEquip();
     }
 

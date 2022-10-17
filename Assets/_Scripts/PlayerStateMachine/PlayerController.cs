@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
 
     [HideInInspector]
-    public Creature creatureReference;
+    public Creature creatureReference;   
 
     private void Start()
     {

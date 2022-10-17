@@ -485,13 +485,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6044717014275557405, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: nakedArmor
-      value: 
-      objectReference: {fileID: 11400000, guid: b3a384b4a11cad6428e3a5eb43955050, type: 2}
-    - target: {fileID: 6044717014275557405, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: unarmedWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47da46762ac7f20439f397507319de7b, type: 3}
