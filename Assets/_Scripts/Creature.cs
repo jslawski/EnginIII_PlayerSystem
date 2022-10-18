@@ -39,6 +39,12 @@ public class Creature : MonoBehaviour
 
     private TextMeshProUGUI hpText;
 
+    [HideInInspector]
+    public GrabbableWeapon weaponPickupCandidate;
+
+    [HideInInspector]
+    public LootChest lootChestCandidate;
+
     private void Start()
     {
         this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
@@ -80,6 +86,29 @@ public class Creature : MonoBehaviour
 
         this.hpText.transform.parent.transform.parent.position = adjustedPosition;
         this.hpText.transform.parent.transform.parent.rotation = Quaternion.identity;
+    }
+
+    public void Interact()
+    {
+        if (this.weaponPickupCandidate != null)
+        {
+            this.PickUpWeapon();
+        }
+        else if (this.lootChestCandidate != null)
+        {
+            this.OpenLootChest();
+        }
+    }
+
+    public void PickUpWeapon()
+    {
+        this.Equip(this.weaponPickupCandidate.weaponDetails);
+        Destroy(this.weaponPickupCandidate.gameObject);        
+    }
+
+    public void OpenLootChest()
+    {
+        this.lootChestCandidate.GenerateLoot();        
     }
 
     public void DropWeapon()

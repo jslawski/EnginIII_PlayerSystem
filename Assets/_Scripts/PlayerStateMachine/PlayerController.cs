@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {    
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody playerRb;
 
     [HideInInspector]
-    public Creature creatureReference;   
+    public Creature creatureReference;    
 
     private void Start()
     {
@@ -34,13 +35,13 @@ public class PlayerController : MonoBehaviour
     {
         this.currentState.UpdateState();
 
-        if (Input.GetKeyUp(KeyCode.P))
+        if (Input.GetKeyUp(KeyCode.R))
         {
-            this.creatureReference.DropWeapon();
+            SceneManager.LoadScene(0);
         }
-        if (Input.GetKeyUp(KeyCode.O))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            this.creatureReference.DropArmor();
+            Application.Quit();
         }
     }
 

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e1b185cc7318f546b206019df0e2ad7, type: 3}
-  m_Name: Sword
+  m_Name: Rusty Sword
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  rarity: 2
+  rarity: 0
   equipmentType: 0
-  enchantmentSlots:
-  - {fileID: 11400000, guid: bd60a03a4a745bd43b00871c453e79da, type: 2}
-  attackPower: 5
-  critChance: 0.295
-  attackZoneDimensions: {x: 1, y: 3}
+  enchantmentSlots: []
+  attackPower: 3
+  critChance: 0
+  attackZoneDimensions: {x: 0.5, y: 2}

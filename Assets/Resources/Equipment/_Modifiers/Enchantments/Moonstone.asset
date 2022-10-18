@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Moonstone
   m_EditorClassIdentifier: 
   triggers: 00000000
+  abilityDisplayName: Move Speed Up
   statusEffectName: PermanentSpeedUp

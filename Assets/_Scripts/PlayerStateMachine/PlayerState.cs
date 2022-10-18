@@ -12,7 +12,15 @@ public class PlayerState
     }
     public virtual void Exit() { }
 
-    public virtual void UpdateState() { }
+    public virtual void UpdateState()
+    {
+        if (Input.GetKeyDown(this.controller.interactKey))
+        {
+            this.controller.creatureReference.Interact();
+        }
+    }
+
+
     public virtual void FixedUpdateState() { }
 
     protected bool PressedInteractKey()

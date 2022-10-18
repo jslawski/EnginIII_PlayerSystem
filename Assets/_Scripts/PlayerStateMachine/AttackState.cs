@@ -24,7 +24,7 @@ public class AttackState : PlayerState
 
     public override void UpdateState()
     {
-        base.UpdateState();
+        //Don't allow players to pick up weapons while they're attacking
     }
 
     public override void FixedUpdateState()

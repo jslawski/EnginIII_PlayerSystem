@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Jacinth
   m_EditorClassIdentifier: 
   triggers: 02000000
+  abilityDisplayName: Inflict Burn
   statusEffectName: TimedBurn

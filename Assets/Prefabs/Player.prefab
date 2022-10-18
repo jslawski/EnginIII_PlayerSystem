@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 6401538956567892345}
   - component: {fileID: 2890657395172797775}
   - component: {fileID: 8015789882599263184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Hittable
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 7559151338443659652}
   - component: {fileID: 4732083264601563726}
   - component: {fileID: 474697812861884426}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1858220523780303683}
   - component: {fileID: 1211298045687028474}
   - component: {fileID: 8546903499126888209}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 1997908293704535424}
   - component: {fileID: 2211142431985658057}
   - component: {fileID: 8239840153449752048}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

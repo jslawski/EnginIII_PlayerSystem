@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StatusEffect : MonoBehaviour
-{
+{ 
     protected Creature ownerTarget;
     protected Creature nonOwnerTarget;
 
