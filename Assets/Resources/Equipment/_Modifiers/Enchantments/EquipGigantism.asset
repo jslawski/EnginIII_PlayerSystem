@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c237a7e238bf994b9dae73ae36863cf, type: 3}
-  m_Name: Bloodstone
+  m_Name: EquipGigantism
   m_EditorClassIdentifier: 
-  triggers: 02000000
-  abilityDisplayName: Life Steal
-  statusEffectName: OneOffLifeSteal
+  triggers: 00000000
+  abilityDisplayName: Gigantism
+  statusEffectName: PermanentGiant

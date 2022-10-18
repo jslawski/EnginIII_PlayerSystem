@@ -10,13 +10,13 @@ public class PermanentGiant : StatusEffect
     {
         base.ApplyStatusEffect();
 
-        this.ownerTarget.gameObject.transform.localScale = new Vector3(this.newScale, this.newScale, this.newScale);
+        this.nonOwnerTarget.gameObject.transform.localScale = new Vector3(this.newScale, this.newScale, this.newScale);
     }
 
     protected override void CleanupStatusEffect()
     {
         base.CleanupStatusEffect();
 
-        this.ownerTarget.gameObject.transform.localScale = Vector3.one;
+        this.nonOwnerTarget.gameObject.transform.localScale = Vector3.one;
     }
 }

@@ -10,13 +10,13 @@ public class PermanentMinimize : StatusEffect
     {
         base.ApplyStatusEffect();
 
-        this.ownerTarget.gameObject.transform.localScale = new Vector3(this.minimizedScale, this.minimizedScale, this.minimizedScale);
+        this.nonOwnerTarget.gameObject.transform.localScale = new Vector3(this.minimizedScale, this.minimizedScale, this.minimizedScale);
     }
 
     protected override void CleanupStatusEffect()
     {
         base.CleanupStatusEffect();
 
-        this.ownerTarget.gameObject.transform.localScale = Vector3.one;
+        this.nonOwnerTarget.gameObject.transform.localScale = Vector3.one;
     }
 }
